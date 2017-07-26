@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controleEstoque="clr-namespace:ControleEstoque.View"
+             Title="Controle Estoque"
+             x:Class="ControleEstoque.View.ListProduto">
+
+    <StackLayout VerticalOptions="CenterAndExpand">
+
+        <StackLayout Padding="5" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+            <Label Text="Inventário" TextColor="Green" Font="25"/>
+        </StackLayout>
+
+        <StackLayout Padding="10" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <Label Text="Produto" TextColor="Green" Font="18" Margin="0, 0, 100,0" />
+            <Label Text="Quant." TextColor="Green" Font="18"  Margin="0, 0, 50,0"/>
+            <Label Text="Total" TextColor="Green" Font="18" />
+        </StackLayout>
+
+        <StackLayout Padding="5" Orientation="Vertical">
+            <ListView ItemsSource="{Binding produtos}" SelectedItem="{Binding ProdutoSelecionado}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Produto_Quimico1}" FontSize="17" MinimumWidthRequest="90" VerticalTextAlignment="Center" Margin="0, 0, 100,0" />
+                                    <Label Text="{Binding estoqueGerado}" FontAttributes="Bold" MinimumWidthRequest="40" TextColor="Green" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Unidade}" FontAttributes="Bold" MinimumWidthRequest="50" TextColor="Green" VerticalTextAlignment="Center"  Margin="0, 0, 20,0"  />
+                                    <Label Text="R$" MinimumWidthRequest="40" VerticalTextAlignment="Center" />
+                                    <Label Text="{Binding valorRealEstoque}" MinimumWidthRequest="40" FontAttributes="Bold" TextColor="Green" VerticalTextAlignment="Center" />
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>

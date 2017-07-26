@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="{Binding Produto.Produto_Quimico1}"
+             x:Class="ControleEstoque.View.DetalheProduto">
+
+    <StackLayout Padding="25">
+        <TableView>
+            <TableRoot>
+                <TableSection Title="Produto Estoque">
+                    <TextCell Text="{Binding TextoNomeProduto , Mode=TwoWay}"></TextCell>
+                    <TextCell Text="{Binding TextoEstoqueMinimo, Mode=TwoWay}"></TextCell>
+                    <TextCell Text="{Binding TextoEstoqueGerado, Mode=TwoWay}"></TextCell>
+                    <TextCell Text="{Binding TextoUnidade, Mode=TwoWay}"></TextCell>
+                    <TextCell Text="{Binding TextoValorEstoque, Mode=TwoWay}"></TextCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </StackLayout>
+</ContentPage>

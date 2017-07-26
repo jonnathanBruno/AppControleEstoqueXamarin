@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controleEstoque="clr-namespace:ControleEstoque.View"
+             x:Class="ControleEstoque.MainPage"
+             Title="Controle de Estoque"
+             NavigationPage.HasNavigationBar="False" 
+             NavigationPage.HasBackButton="False">
+
+    <MasterDetailPage.Master>
+        <ContentPage Title="Test">
+            <StackLayout>
+                <StackLayout Padding="5" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Label Text="Menu" TextColor="Green" Font="25"/>
+                </StackLayout>
+                
+                <Button Text="Detail1" />
+                <Button  x:Name="ButtonA" Text="Gráfico Entrada/Saída" />
+                <Button Text="Detail3" />
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <controleEstoque:ListProduto />
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+
+</MasterDetailPage>
