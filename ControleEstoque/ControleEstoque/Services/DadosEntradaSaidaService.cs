@@ -13,13 +13,13 @@ namespace ControleEstoque.Services
         const string URLEntrada = "http://teste-ipragas.uni5.net/Sistema/Logica_Estoque/ControleEstoque.asmx/pesquisarQntEstoqueEntrada";
         const string URLSaida = "http://teste-ipragas.uni5.net/Sistema/Logica_Estoque/ControleEstoque.asmx/pesquisarQntEstoqueSaida";
 
-        public async Task BuscarEntradaPorAno()
+        public async Task BuscarEntradaPorAno(int idEmpresa)
         {
             HttpClient cliente = new HttpClient();
 
             string json = JsonConvert.SerializeObject(new
             {
-                Id_Empresa = 3,
+                Id_Empresa = idEmpresa,
                 ano = "2017"
             });
 
@@ -40,13 +40,13 @@ namespace ControleEstoque.Services
             }
         }
 
-        public async Task BuscarSaidaPorAno()
+        public async Task BuscarSaidaPorAno(int idEmpresa)
         {
             HttpClient cliente = new HttpClient();
 
             string json = JsonConvert.SerializeObject(new
             {
-                Id_Empresa = 3,
+                Id_Empresa = idEmpresa,
                 ano = "2017"
             });
 

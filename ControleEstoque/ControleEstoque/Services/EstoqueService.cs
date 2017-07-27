@@ -13,13 +13,13 @@ namespace ControleEstoque.Services
     {
         const string URL = "http://teste-ipragas.uni5.net/Sistema/Logica_Estoque/ControleEstoque.asmx/pegarDadosProdutoEstoque";
 
-        public async Task BuscarInventario()
+        public async Task BuscarInventario(int idEmpresa)
         {
             HttpClient cliente = new HttpClient();
 
             string json = JsonConvert.SerializeObject(new
             {
-                Id_Empresa = 3
+                Id_Empresa = idEmpresa
             });
 
             var content = new StringContent(json, Encoding.UTF8, "application/json");

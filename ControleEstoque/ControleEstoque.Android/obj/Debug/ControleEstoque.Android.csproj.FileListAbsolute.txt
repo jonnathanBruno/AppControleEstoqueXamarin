@@ -69,3 +69,5 @@ C:\Users\JonnathanBruno\Desktop\ControleEstoque\ControleEstoque\ControleEstoque.
 C:\Users\JonnathanBruno\Desktop\ControleEstoque\ControleEstoque\ControleEstoque.Android\bin\Debug\Newtonsoft.Json.xml
 C:\Users\JonnathanBruno\Desktop\ControleEstoque\ControleEstoque\ControleEstoque.Android\obj\Debug\ControleEstoque.Droid.View.Login.xaml.g.cs
 C:\Users\JonnathanBruno\Desktop\ControleEstoque\ControleEstoque\ControleEstoque.Android\obj\Debug\res\drawable\ipragas.png
+C:\Users\JonnathanBruno\Desktop\ControleEstoque\ControleEstoque\ControleEstoque.Android\obj\Debug\ControleEstoque.Droid.View.GraficoEntrada.xaml.g.cs
+C:\Users\JonnathanBruno\Desktop\ControleEstoque\ControleEstoque\ControleEstoque.Android\obj\Debug\ControleEstoque.Droid.View.GraficoSaida.xaml.g.cs

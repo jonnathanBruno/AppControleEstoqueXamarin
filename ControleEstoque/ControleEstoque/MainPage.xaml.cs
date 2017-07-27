@@ -13,31 +13,28 @@ namespace ControleEstoque
 	public partial class MainPage : MasterDetailPage
     {
         EstoqueService inventario =  new EstoqueService();
+        public int idEmpresa = 0;
 
-		public MainPage()
+		public MainPage(int idEmpresa)
 		{
             InitializeComponent();
 
+            this.idEmpresa = idEmpresa;
+
             ButtonA.Clicked += async (sender, e) =>
             {
-                await Navigation.PushAsync(new GraficoEstoque());
+                await Navigation.PushAsync(new GraficoEntrada(this.idEmpresa));
             };
-        }
 
-        //private void Button1_OnClicked(object sender, EventArgs e)
-        //{
-        //    Detail = (new Detail());
-        //}
+            ButtonB.Clicked += async (sender, e) =>
+            {
+                await Navigation.PushAsync(new GraficoSaida(this.idEmpresa));
+            };
 
-        //private void Button2_OnClicked(object sender, EventArgs e)
-        //{
-        //    App.MasterDetail.Detail.Navigation.PushAsync(new GraficoEstoque());
-        //    Detail = new NavigationPage(new GraficoEstoque());
-        //}
-
-        private void Button3_OnClicked(object sender, EventArgs e)
-        {
-            Detail = new NavigationPage(new ListProduto());
+            ButtonC.Clicked += async (sender, e) =>
+            {
+                await Navigation.PushAsync(new GraficoEstoque(this.idEmpresa));
+            };
         }
     }
 }

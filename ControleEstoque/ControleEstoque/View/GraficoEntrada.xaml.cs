@@ -11,16 +11,15 @@ using System;
 namespace ControleEstoque.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class GraficoEstoque : ContentPage
+	public partial class GraficoEntrada : ContentPage
 	{
-
         public PlotModel BarModel { get; set; }
         MesEstoque entradaMes { get; set; }
         DadosEntradaSaidaService gerarGrafico = new DadosEntradaSaidaService();
 
-        public GraficoEstoque (int idEmpresa)
+        public GraficoEntrada (int idEmpresa)
 		{
-			InitializeComponent();
+			InitializeComponent ();
 
             gerarGrafico.BuscarEntradaPorAno(idEmpresa);
 
@@ -28,25 +27,19 @@ namespace ControleEstoque.View
             (entrada) =>
             {
                 this.entradaMes = entrada;
-                gerarGrafico.BuscarSaidaPorAno(idEmpresa);
+                BarModel = CreateBarChart(false, "Entrada", this.entradaMes);
+
+
+                this.Content = new PlotView
+                {
+                    Model = BarModel,
+                    VerticalOptions = LayoutOptions.Fill,
+                    HorizontalOptions = LayoutOptions.Fill,
+                };
             });
-
-           MessagingCenter.Subscribe<MesEstoque>(this, "SucessoBuscarSaidaMes",
-           (saida) =>
-           {
-               BarModel = CreateBarChart(false, "Entrada/Saída", this.entradaMes, saida);
-
-
-               this.Content = new PlotView
-               {
-                   Model = BarModel,
-                   VerticalOptions = LayoutOptions.Fill,
-                   HorizontalOptions = LayoutOptions.Fill,
-               };
-           });
         }
 
-        private PlotModel CreateBarChart(bool stacked, string title,MesEstoque entrada, MesEstoque saida)
+        private PlotModel CreateBarChart(bool stacked, string title, MesEstoque entrada)
         {
             var model = new PlotModel
             {
@@ -57,8 +50,8 @@ namespace ControleEstoque.View
                 LegendBorderThickness = 0
             };
 
-            var s1 = new BarSeries { Title = "Entrada", IsStacked = stacked, StrokeColor = OxyColors.Black, StrokeThickness = 1 };
-            s1.Items.Add(new BarItem { Value =  Convert.ToDouble(entrada.dezembro) });
+            var s1 = new BarSeries { Title = "Entrada", IsStacked = stacked, StrokeColor = OxyColors.Green, StrokeThickness = 1 };
+            s1.Items.Add(new BarItem { Value = Convert.ToDouble(entrada.dezembro) });
             s1.Items.Add(new BarItem { Value = Convert.ToDouble(entrada.novembro) });
             s1.Items.Add(new BarItem { Value = Convert.ToDouble(entrada.outubro) });
             s1.Items.Add(new BarItem { Value = Convert.ToDouble(entrada.setembro) });
@@ -70,20 +63,6 @@ namespace ControleEstoque.View
             s1.Items.Add(new BarItem { Value = Convert.ToDouble(entrada.marco) });
             s1.Items.Add(new BarItem { Value = Convert.ToDouble(entrada.fevereiro) });
             s1.Items.Add(new BarItem { Value = Convert.ToDouble(entrada.janeiro) });
-
-            var s2 = new BarSeries { Title = "Saída", IsStacked = stacked, StrokeColor = OxyColors.Black, StrokeThickness = 1, FillColor = OxyColors.Red };
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.dezembro) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.novembro) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.outubro) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.setembro) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.agosto) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.julho) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.junho) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.maio) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.abril) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.marco) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.fevereiro) });
-            s2.Items.Add(new BarItem { Value = Convert.ToDouble(saida.janeiro) });
 
             var categoryAxis = new CategoryAxis { Position = CategoryAxisPosition() };
             categoryAxis.Labels.Add("Janeiro");
@@ -100,7 +79,6 @@ namespace ControleEstoque.View
             categoryAxis.Labels.Add("Dezembro");
             var valueAxis = new LinearAxis { Position = ValueAxisPosition(), MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0 };
             model.Series.Add(s1);
-            model.Series.Add(s2);
             model.Axes.Add(categoryAxis);
             model.Axes.Add(valueAxis);
             return model;

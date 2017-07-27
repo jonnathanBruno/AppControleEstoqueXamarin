@@ -39,9 +39,16 @@ namespace ControleEstoque.Services
             {
                 var JsonResult = response.Content.ReadAsStringAsync();
                 Empresa d = JsonConvert.DeserializeObject<Empresa>(JsonResult.Result.ToString());
-                Empresa[] empresa = JsonConvert.DeserializeObject<Empresa[]>(d.d);
 
-                MessagingCenter.Send<Empresa[]>(empresa, "SucessoLogin");
+                if (d.d != "Inativo")
+                {
+                    Empresa[] empresa = JsonConvert.DeserializeObject<Empresa[]>(d.d);
+                    MessagingCenter.Send<Empresa[]>(empresa, "SucessoLogin");
+                }
+                else
+                {
+                    MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FalhaLogin");
+                }
             }
             else { 
                 MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FalhaLogin");

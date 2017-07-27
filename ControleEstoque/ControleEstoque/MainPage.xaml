@@ -13,10 +13,10 @@
                 <StackLayout Padding="5" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                     <Label Text="Menu" TextColor="Green" Font="25"/>
                 </StackLayout>
-                
-                <Button Text="Detail1" />
-                <Button  x:Name="ButtonA" Text="Gráfico Entrada/Saída" />
-                <Button Text="Detail3" />
+
+                <Button  x:Name="ButtonA" Text="Gráfico Entrada" />
+                <Button  x:Name="ButtonB" Text="Gráfico Saída" />
+                <Button  x:Name="ButtonC" Text="Gráfico Entrada/Saída" />
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
@@ -24,7 +24,11 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <controleEstoque:ListProduto />
+                <controleEstoque:ListProduto>
+                    <x:Arguments>
+                        <x:Int32>3</x:Int32>
+                    </x:Arguments>
+                </controleEstoque:ListProduto>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

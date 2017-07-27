@@ -14,17 +14,17 @@ namespace ControleEstoque
 		public App ()
 		{
 			InitializeComponent();
-            //MainPage = new ControleEstoque.View.Login();
-            MainPage = new NavigationPage(new ControleEstoque.MainPage());
+            MainPage = new ControleEstoque.View.Login();
+            //MainPage = new NavigationPage(new ControleEstoque.MainPage());
         }
 
 		protected override void OnStart ()
 		{
-            //MessagingCenter.Subscribe<Empresa[]>(this, "SucessoLogin",
-            //    (empresa) =>
-            //    {
-            //        MainPage = new NavigationPage(new ControleEstoque.MainPage());
-            //    });
+            MessagingCenter.Subscribe<Empresa[]>(this, "SucessoLogin",
+                (empresa) =>
+                {
+                    MainPage = new NavigationPage(new ControleEstoque.MainPage(empresa.First().Id_Empresa));
+                });
         }
 
 		protected override void OnSleep ()

@@ -9,10 +9,10 @@ namespace ControleEstoque.View
     {
         EstoqueService inventario = new EstoqueService();
 
-        public ListProduto()
+        public ListProduto(int idEmpresa)
         {
             InitializeComponent();
-            inventario.BuscarInventario();
+            inventario.BuscarInventario(idEmpresa);
 
 
             MessagingCenter.Subscribe<Produto[]>(this, "SucessoBuscarProduto",
